@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Datos Persona</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>
+            <header th:replace="~{layout/plantilla :: header}"></header>
+            <a th:href="@{/}">Regresar</a>
+            <br/>
+            <form th:action="@{/guardar}" method="POST" th:object="${persona}">
+                <input type="hidden" name="idPersona" th:field="*{idPersona}"/>
+                <br/>
+                <label for="nombre">Nombre:</label>
+                <input type="text" name="nombre" th:field="*{nombre}" />
+                <span th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Error Nombre</span>
+                <br/>
+                <label for="apellido">Apellido:</label>
+                <input type="text" name="apellido" th:field="*{apellido}" />
+                <span th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}">Error Nombre</span>
+                <br/>
+                <input type="submit" name="guardar" th:value="#{accion.guardar}">
+            </form>
+        </div>
+        <footer th:replace="~{layout/plantilla :: footer}"></footer>
+    </body>
+</html>
